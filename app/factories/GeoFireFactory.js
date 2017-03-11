@@ -1,6 +1,8 @@
 "use strict";
 
-app.factory("GeoFireFactory", function ($http, $q) {
+app.factory("GeoFireFactory", function ($http, $q, AuthFactory) {
+
+	let user = AuthFactory.getUser();
 
 	//GeoFire query 
 	//initialize the firebase app on the app.js, pointing to info stored in the values folder
@@ -35,17 +37,16 @@ app.factory("GeoFireFactory", function ($http, $q) {
 	  
 	  log("Retrieved user's location: [" + latitude + ", " + longitude + "]");
 
-	  var username = "wesley";
-	  geoFire.set(username, [latitude, longitude]).then(function() {
-	    log("Current user " + username + "'s location has been added to GeoFire");
-
+		geoFire.set(user, [latitude, longitude]).then(function() {
+		log("Current user " + user + "'s location has been added to GeoFire");
+	  
 	    // When the user disconnects from Firebase (e.g. closes the app, exits the browser),
 	    // remove their GeoFire entry
-	    firebaseRef.child(username).onDisconnect().remove();
+	    firebaseRef.child(user).onDisconnect().remove();
 
-	    log("Added handler to remove user " + username + " from GeoFire when you leave this page.");
+	    log("Added handler to remove user " + user + " from GeoFire when you leave this page.");
 	  }).catch(function(error) {
-	    log("Error adding user " + username + "'s location to GeoFire");
+	    log("Error adding user " + user + "'s location to GeoFire");
 	  });
 	};
 
