@@ -1,11 +1,10 @@
 "use strict";
 
-app.factory("twitterFactory", function($http, $q, $scope, GeoFireFactory, RootFactory){
-	console.log("twitterFactory");
-	/*
-		Documentation
-	 */
-	 let userLat = GeoFireFactory.latitude;
+app.factory("TwitterFactory", function($http, $q, GeoFireFactory){
+	console.log("TwitterFactory");
+	
+	//supposed to get this info from the GeoFireFactory.js
+	 let userLat = GeoFireFactory.geolocationCallback();
 	 let userLong = GeoFireFactory.longitude;
 	 let userRadius = GeoFireFactory.radius;
 	 let getUserLocation = () => {
