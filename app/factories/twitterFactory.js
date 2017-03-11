@@ -6,6 +6,5 @@ app.factory("twitterFactory", function($http, $scope, RootFactory){
 	 */
 
 
-
     return {};
 });
