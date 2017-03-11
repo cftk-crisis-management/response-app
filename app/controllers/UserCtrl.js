@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller( function($scope, $location, AuthFactory) {
+app.controller("UserCtrl", function($scope, $location, AuthFactory) {
 
 let loginGoogle = function () {
 		console.log("you clicked login with Google");
@@ -23,5 +23,5 @@ let loginGoogle = function () {
 	    	// ...
 	  	});
 	};
-	
+		
 });
