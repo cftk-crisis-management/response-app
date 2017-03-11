@@ -1,9 +1,10 @@
 "use strict";
 
-app.factory("twitterFactory", function($http, RootFactory){
+app.factory("twitterFactory", function($http, $scope, RootFactory){
 	/*
 		Documentation
 	 */
+
 
 
     return {};
