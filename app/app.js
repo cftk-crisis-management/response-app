@@ -32,6 +32,12 @@ app.config(function($routeProvider, $httpProvider){
 		templateUrl: 'partials/home.html',
 		controller: "HomeCtrl",
 		resolve: {isAuth}
+	})
+
+	.when('/map', {
+		templateUrl: 'partials/map.html',
+		controller: "TwitterMapCtrl",
+		resolve: {isAuth}
 	});
 
 

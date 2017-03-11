@@ -11,7 +11,9 @@ app.factory("GeoFireFactory", function ($http, $q) {
 	// Create a new GeoFire instance at the random Firebase location
 	var geoFire = new GeoFire(firebaseRef);
 	var geoQuery;
-
+	var latitude;
+	var longitude;
+	var radius;
 	//Need grab the location info from the phone, gonna be a query
 
 	/* Uses the HTML5 geolocation API to get the current user's location */
@@ -26,11 +28,11 @@ app.factory("GeoFireFactory", function ($http, $q) {
 
 	/* Callback method from the geolocation API which receives the current user's location */
 	var geolocationCallback = function(location) {
-	  var latitude = location.coords.latitude;
-	  var longitude = location.coords.longitude;
+	  latitude = location.coords.latitude;
+	  longitude = location.coords.longitude;
 	  
 	  //add the radius to the object. during the twitter query, add in mi after the radius
-	  var radius = 25; 
+	  radius = 25; 
 	  location.coords.radius = radius;
 	  
 	  log("Retrieved user's location: [" + latitude + ", " + longitude + "]");
