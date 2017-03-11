@@ -28,6 +28,11 @@ app.factory("GeoFireFactory", function ($http, $q) {
 	var geolocationCallback = function(location) {
 	  var latitude = location.coords.latitude;
 	  var longitude = location.coords.longitude;
+	  
+	  //add the radius to the object. during the twitter query, add in mi after the radius
+	  var radius = 25; 
+	  location.coords.radius = radius;
+	  
 	  log("Retrieved user's location: [" + latitude + ", " + longitude + "]");
 
 	  var username = "wesley";
