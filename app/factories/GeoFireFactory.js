@@ -17,10 +17,10 @@ app.factory("GeoFireFactory", function ($http, $q) {
 	/* Uses the HTML5 geolocation API to get the current user's location */
 	var getLocation = function() {
 	  if (typeof navigator !== "undefined" && typeof navigator.geolocation !== "undefined") {
-	    console.log(log("Asking user to get their location"));
+	    log("Asking user to get their location");
 	    navigator.geolocation.getCurrentPosition(geolocationCallback, errorHandler);
 	  } else {
-	    log("Your browser does not support the HTML5 Geolocation API, so this demo will not work.")
+	    log("Your browser does not support the HTML5 Geolocation API, so this demo will not work.");
 	  }
 	};
 
@@ -42,7 +42,7 @@ app.factory("GeoFireFactory", function ($http, $q) {
 	  }).catch(function(error) {
 	    log("Error adding user " + username + "'s location to GeoFire");
 	  });
-	}
+	};
 
 	/* Handles any errors from trying to get the user's current location */
 	var errorHandler = function(error) {
@@ -53,21 +53,26 @@ app.factory("GeoFireFactory", function ($http, $q) {
 	  } else if (error.code === 3) {
 	    log("Error: TIMEOUT: Calculating the user's location too took long");
 	  } else {
-	    log("Unexpected error code")
+	    log("Unexpected error code");
 	  }
 	};
 
-	// Get the current user's location
-	getLocation();
-
-
 	/* Logs to the page instead of the console */
 	function log(message) {
-	  var childDiv = document.createElement("div");
-	  var textNode = document.createTextNode(message);
-	  childDiv.appendChild(textNode);
-	  document.getElementById("log").appendChild(childDiv);
+		var childDiv = document.createElement("div");
+		var textNode = document.createTextNode(message);
+		childDiv.appendChild(textNode);
+		document.getElementById("log").appendChild(childDiv);
 	}
+
+
+	return {
+		getLocation,
+		geolocationCallback,
+		errorHandler,
+		log
+	};
+
 	
 
 });
