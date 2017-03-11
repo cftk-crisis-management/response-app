@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller( "UserCtrl", function($scope, $window, AuthFactory) {
+app.controller( "UserCtrl", function($scope, $window, $location, AuthFactory) {
 
 	$scope.loginGoogle = function () {
 		console.log("you clicked login with Google");
@@ -9,7 +9,7 @@ app.controller( "UserCtrl", function($scope, $window, AuthFactory) {
 	    	var user = result.user.uid;
 	    	console.log("logged in user:", user);
 	    	//Once logged in, go to another view
-	    	// $location.path("/login-details");
+	    	$location.path("/home");
 	    	$scope.$apply();
 	  	}).catch(function(error) {
 	    	// Handle the Errors.
