@@ -1,0 +1,30 @@
+{
+  "name": "c4tkcrisis",
+  "version": "0.1.0",
+  "devDependencies": {
+    "firebase": "^3.7.1",
+    "geofire": "^4.1.2",
+    "grunt": "^1.0.1",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-nodeunit": "1.0.0",
+    "grunt-contrib-uglify": "2.2.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "jshint": "^2.9.1",
+    "jshint-stylish": "^2.1.0",
+    "matchdep": "^1.0.1",
+    "rsvp": "^3.4.0"
+  },
+  "dependencies": {
+    "angular": "^1.5.10",
+    "angular-route": "^1.6.2",
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.1.1"
+  },
+  "main": "gruntfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
