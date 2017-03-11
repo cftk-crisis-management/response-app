@@ -28,7 +28,8 @@ app.run( ($location, FBCreds, $rootScope) => {
 
 	let authConfig = {
 		apiKey: creds.key,
-		authDomain: creds.authDomain
+		authDomain: creds.authDomain,
+		databaseURL: creds.URL
 	};
 
 	firebase.initializeApp(authConfig);
