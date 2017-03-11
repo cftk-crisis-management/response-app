@@ -53,7 +53,5 @@ app.factory("AuthFactory", function(){
     	return firebase.auth().signInWithPopup(provider);
   	};
 
-
-
 	return {createUser, loginUser, logoutUser, isAuthenticated, getUser, authWithProvider};
 });

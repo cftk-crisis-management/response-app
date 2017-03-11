@@ -1,8 +1,8 @@
 "use strict";
 
-app.controller("UserCtrl", function($scope, $location, AuthFactory) {
+app.controller( "UserCtrl", function($scope, $window, AuthFactory) {
 
-let loginGoogle = function () {
+	$scope.loginGoogle = function () {
 		console.log("you clicked login with Google");
 		AuthFactory.authWithProvider()
 		.then(function(result) {
