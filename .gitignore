@@ -1,6 +1,6 @@
 .DS_Store
-values
-node_modules
-bower_components
+app/values
+lib/node_modules
+lib/bower_components
 .sass-cache
 scraps
