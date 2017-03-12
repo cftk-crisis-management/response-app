@@ -1,3 +1,20 @@
 body {
 	
 }
+
+.navbar-default {
+  height: 150px;
+ }
+
+.navbar-header img {
+
+}
+
+.navIcon {
+  height: 50px;
+  width: 50px;
+}
+
+.search {
+  margin-top: 20px;	
+}
