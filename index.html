@@ -16,10 +16,12 @@
 
 <!--define the app -->
 <body ng-app="CrisisApp">
-
+	
 	<div ng-include="'partials/nav.html'"></div>
 	<!--define the view -->
 	<div ng-view></div>
+
+	
 
 
 
@@ -27,6 +29,10 @@
 
 <!-- jquery -->
 <script type="text/javascript" src="lib/node_modules/jquery/dist/jquery.min.js"></script>
+<!-- Scripts files -->
+<script type="text/javascript" src="app/scripts/googleMaps.js"></script>
+<script type="text/javascript" src="app/scripts/mapData.js"></script>
+
 
 <!-- app & factories -->
 <script type="text/javascript" src="app/app.js"></script>
@@ -42,6 +48,6 @@
 <script type="text/javascript" src="app/controllers/UserCtrl.js"></script>
 <script type="text/javascript" src="app/controllers/TwitterMapCtrl.js"></script>
 <script type="text/javascript" src="app/controllers/LocationCtrl.js"></script>
-
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5Pdsn6VaGHxD0Glw_OhswFgzwfFE2a4Q" async defer></script>
 </body>
 </html>
