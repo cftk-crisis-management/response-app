@@ -3,37 +3,23 @@
 app.factory("GeoFireFactory", function ($http, $q, AuthFactory, FBCreds) {
 
 
-
-	//GeoFire query 
-	//initialize the firebase app on the app.js, pointing to info stored in the values folder
-
-	//generate user's specific location
-	var firebaseRef = firebase.database().ref().push();
-
-	// Create a new GeoFire instance at the random Firebase location
-	var geoFire = new GeoFire(firebaseRef);
-	var geoQuery;
-
-	//Need grab the location info from the phone, gonna be a query
-
 	/* Uses the HTML5 geolocation API to get the current user's location */
 	var getLocation = function() {
-	  if (typeof navigator !== "undefined" && typeof navigator.geolocation !== "undefined") {
-	    log("Asking user to get their location");
-	    navigator.geolocation.getCurrentPosition(geolocationCallback, errorHandler);
-	  } else {
-	    log("Your browser does not support the HTML5 Geolocation API, so this demo will not work.");
-	  }
+	   if (typeof navigator !== "undefined" && typeof navigator.geolocation !== "undefined") {
+	   	console.log("Asking user to get their location");
+
+		navigator.geolocation.getCurrentPosition(geolocationCallback, errorHandler);
+	  
+		} else {
+		console.log("Your browser does not support the HTML5 Geolocation API, so this demo will not work.");
+		}
 	};
 
-
-
 	var geolocationCallback = function(location) {
+		console.log("location grabbed"); 
+
 		let user = AuthFactory.getUser();
 
-		//console.log("LOCATION", location.coords);
-		//Geoposition {coords: Coordinates, timestamp: 1489283776769}
-		
 		let locationData = {
 			uid: user,
 			lattitude: location.coords.latitude,
@@ -44,22 +30,28 @@ app.factory("GeoFireFactory", function ($http, $q, AuthFactory, FBCreds) {
 			$http.post(`${FBCreds.URL}/location.json`, angular.toJson(locationData))
 			.then((location) => {
 				resolve(location);
+				console.log("posted successful to firebase", locationData); 
 			})
 			.catch((error) => {
 				reject(error);
+				console.log("error in geolocationCallback promise")
 			});
 		});
 	};
 	
 
 	var getLocationFromFireBase = () => {
+
+		console.log("getLocationFromFireBase"); 
 		let currentUser = AuthFactory.getUser();
 		let items = [];
 
 		return new Promise((resolve, reject) => {
 			$http.get(`${FBCreds.URL}/location.json?orderBy="uid"&equalTo="${currentUser}"`)
 			.then((itemObject) => {
-				let itemCollection = itemObject.data;			
+				let itemCollection = itemObject.data;	
+
+				console.log("Returned data from FB", itemCollection);		
 				Object.keys(itemCollection).forEach((key) =>{
 					itemCollection[key].id = key;
 					items.push(itemCollection[key]);
@@ -86,21 +78,12 @@ app.factory("GeoFireFactory", function ($http, $q, AuthFactory, FBCreds) {
 	  }
 	};
 
-	/* Logs to the page instead of the console */
-	function log(message) {
-		var childDiv = document.createElement("div");
-		var textNode = document.createTextNode(message);
-		childDiv.appendChild(textNode);
-		document.getElementById("log").appendChild(childDiv);
-	}
-
 
 	return {
 		getLocation,
 		geolocationCallback,
 		getLocationFromFireBase,
 		errorHandler,
-		log
 	};
 
 	
