@@ -1,6 +1,6 @@
 "use strict";
 
-app.factory("GeoFireFactory", function ($http, $q, AuthFactory) {
+app.factory("GeoFireFactory", function ($http, $q, AuthFactory, FBCreds) {
 
 	let user = AuthFactory.getUser();
 
@@ -26,29 +26,32 @@ app.factory("GeoFireFactory", function ($http, $q, AuthFactory) {
 	  }
 	};
 
-	/* Callback method from the geolocation API which receives the current user's location */
+
+
+
 	var geolocationCallback = function(location) {
-	  var latitude = location.coords.latitude;
-	  var longitude = location.coords.longitude;
-	  
-	  //add the radius to the object. during the twitter query, add in mi after the radius
-	  var radius = 25; 
-	  location.coords.radius = radius;
-	  
-	  log("Retrieved user's location: [" + latitude + ", " + longitude + "]");
 
-		geoFire.set(user, [latitude, longitude]).then(function() {
-		log("Current user " + user + "'s location has been added to GeoFire");
-	  
-	    // When the user disconnects from Firebase (e.g. closes the app, exits the browser),
-	    // remove their GeoFire entry
-	    firebaseRef.child(user).onDisconnect().remove();
+		//console.log("LOCATION", location.coords);
+		//Geoposition {coords: Coordinates, timestamp: 1489283776769}
+		
+		let locationData = {
+			uid: user,
+			lattitude: location.coords.latitude,
+			longitude: location.coords.longitude,
+		};
 
-	    log("Added handler to remove user " + user + " from GeoFire when you leave this page.");
-	  }).catch(function(error) {
-	    log("Error adding user " + user + "'s location to GeoFire");
-	  });
+		return new Promise((resolve, reject) => {
+			$http.post(`${FBCreds.URL}/location.json`, angular.toJson(locationData))
+			.then((location) => {
+				resolve(location);
+			})
+			.catch((error) => {
+				reject(error);
+			});
+		});
 	};
+
+
 
 	/* Handles any errors from trying to get the user's current location */
 	var errorHandler = function(error) {

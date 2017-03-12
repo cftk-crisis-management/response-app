@@ -27,20 +27,21 @@ app.config(function($routeProvider, $httpProvider){
 		templateUrl: "partials/login.html ",
 		controller: "UserCtrl",
 	})
-
 	.when('/home', {
 		templateUrl: 'partials/home.html',
 		controller: "HomeCtrl",
 		resolve: {isAuth}
 	})
-
 	.when('/map', {
 		templateUrl: 'partials/map.html',
 		controller: "TwitterMapCtrl",
 		resolve: {isAuth}
+	})
+	.when('/location', {
+		templateUrl: 'partials/location.html',
+		controler: "LocationCtrl",
+		resolve: {isAuth}
 	});
-
-
 
 });
 
