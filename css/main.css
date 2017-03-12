@@ -10,11 +10,31 @@ body {
 
 }
 
+.search {
+  margin-top: 20px;	
+}
+
+.icons {
+  display: block;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .navIcon {
   height: 50px;
   width: 50px;
 }
 
-.search {
-  margin-top: 20px;	
+.crisis-row-icons {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.crisis-row-icons a {
+	display: inline-block;
+	margin: 0 2vw; 
+	transform: scale(2);
 }
