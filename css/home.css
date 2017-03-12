@@ -1,0 +1,15 @@
+.tweet-card {
+	border: 1px black solid;
+	padding: 0.2em 1em 1em 1em;
+	margin-bottom: 2em;
+}
+
+.tweet-pic > img {
+	height: 5em;
+	width: 5em;
+}
+
+.tweet-text {
+	display: inline;
+	font-size: 3rem;
+}	
