@@ -7,14 +7,11 @@ app.factory("TwitterFactory", function($http, $q, GeoFireFactory){
 	 let userLat = GeoFireFactory.geolocationCallback;
 	 let userLong = GeoFireFactory.longitude;
 	 let userRadius = GeoFireFactory.radius;
-	 let  = () => {
-	 	userLat;
+	 let getUserLocation = () => {
 	 		console.log("latitude", userLat);
-		userLong;
 	 		console.log("longitude", userLong);
-	 	userRadius;
 	 		console.log("radius", userRadius);
-	 	return;
+	 	// return;
 	 	//grab the user's current location and POST it to the Twitter API
 	 	//the 
 	 

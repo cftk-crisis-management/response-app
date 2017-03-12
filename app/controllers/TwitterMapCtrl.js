@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("TwitterMapCtrl", function($scope, TwitterFactory){
+app.controller("TwitterMapCtrl", function($scope, TwitterFactory, GeoFireFactory, $q, AuthFactory, $http){
 console.log("TwitterMapCtrl");
 
 //we call on the GeoFireFactory to get the user's location, then we send that location to the Twitterfactory.
