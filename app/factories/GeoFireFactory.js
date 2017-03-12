@@ -2,7 +2,7 @@
 
 app.factory("GeoFireFactory", function ($http, $q, AuthFactory, FBCreds) {
 
-	let user = AuthFactory.getUser();
+
 
 	//GeoFire query 
 	//initialize the firebase app on the app.js, pointing to info stored in the values folder
@@ -28,8 +28,8 @@ app.factory("GeoFireFactory", function ($http, $q, AuthFactory, FBCreds) {
 
 
 
-
 	var geolocationCallback = function(location) {
+		let user = AuthFactory.getUser();
 
 		//console.log("LOCATION", location.coords);
 		//Geoposition {coords: Coordinates, timestamp: 1489283776769}
@@ -50,7 +50,27 @@ app.factory("GeoFireFactory", function ($http, $q, AuthFactory, FBCreds) {
 			});
 		});
 	};
+	
 
+	var getLocationFromFireBase = () => {
+		let currentUser = AuthFactory.getUser();
+		let items = [];
+
+		return new Promise((resolve, reject) => {
+			$http.get(`${FBCreds.URL}/location.json?orderBy="uid"&equalTo="${currentUser}"`)
+			.then((itemObject) => {
+				let itemCollection = itemObject.data;			
+				Object.keys(itemCollection).forEach((key) =>{
+					itemCollection[key].id = key;
+					items.push(itemCollection[key]);
+				});
+				resolve(items);
+			})
+			.catch((error) => {
+				reject(error);
+			});
+		});
+	};
 
 
 	/* Handles any errors from trying to get the user's current location */
@@ -78,6 +98,7 @@ app.factory("GeoFireFactory", function ($http, $q, AuthFactory, FBCreds) {
 	return {
 		getLocation,
 		geolocationCallback,
+		getLocationFromFireBase,
 		errorHandler,
 		log
 	};
