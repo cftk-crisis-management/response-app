@@ -4,21 +4,28 @@ app.controller("HomeCtrl", function(GeoFireFactory, $scope, $location) {
 
 
 	// Get the current user's location
-	GeoFireFactory.getLocation();
+	GeoFireFactory.getLocation()
 
-	
-	//get the items from the item factory
+
+	let locationfb = function() {
+	console.log("timer"); 
+
 	GeoFireFactory.getLocationFromFireBase()
 		.then( (itemArray) => {
 			console.log("RETURNED FROM FB", itemArray);
-			$scope.items = itemArray;
-			$scope.$apply();
+			// call twitter
+			// $scope.items = itemArray;
+			// $scope.$apply();
 	}); 
+	}
+
+	var setInterval;
+	var setTimer = setTimeout(locationfb, 5000);
 
 
-	$scope.goToMap = () => {
-		console.log("changing the map");
-		$location.path('/map');
-	};
+	// $scope.goToMap = () => {
+	// 	console.log("changing the map");
+	// 	$location.path('/map');
+	// };
 	
 });
