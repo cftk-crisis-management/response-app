@@ -1,43 +1,37 @@
 body {
-	
+
 }
 
 .navbar-default {
-  height: 210px;
+  height: 150px;
  }
 
 .navbar-header img {
 
-}
-
-.search {
-  margin-top: 20px;	
+margin: 20px 10px 10px 10px;
 }
 
 .icons {
-  display: block;
-  width: 50%;
-  margin-left: auto;
-  margin-right: auto;
+ 
+  margin: 25px 30px 30px 30px;
 }
 
 .navIcon {
-  height: 50px;
-  width: 50px;
+  height: 100px;
+  width: 100px;
 }
 
-.crisis-row-icons {
-	position: absolute;
-	bottom: 0;
-	left: 50%;
-	transform: translateX(-50%);
-}
 
-.crisis-row-icons a {
-	display: inline-block;
-	margin: 0 2vw;
-	padding: 0px 10px; 
-	transform: scale(2);
+/* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+#map {
+  height: 100%;
+}
+/* Optional: Makes the sample page fill the window. */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 /* JQuery */
