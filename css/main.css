@@ -3,7 +3,7 @@ body {
 }
 
 .navbar-default {
-  height: 150px;
+  height: 210px;
  }
 
 .navbar-header img {
@@ -35,9 +35,11 @@ body {
 
 .crisis-row-icons a {
 	display: inline-block;
-	margin: 0 2vw; 
+	margin: 0 2vw;
+	padding: 0px 10px; 
 	transform: scale(2);
 }
+
 
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -50,3 +52,10 @@ html, body {
   margin: 0;
   padding: 0;
 }
+
+/* JQuery */
+
+.hidden {
+	visibility: hidden; 	
+}
+
